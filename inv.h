@@ -34,4 +34,6 @@ int insert_at_last(File_List **head,char *str);
 int print_list(File_List **head);
 int create(mainode_t **arr,File_List **head);
 void display(mainode_t **arr);
+int search(mainode_t **arr,char *str);
+int save(mainode_t **arr,char *file);
 #endif

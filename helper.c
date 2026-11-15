@@ -25,15 +25,18 @@ while(argv[i]!=NULL)
     }
     if(!error)
     {
-    for(int j=1;j<i;j++)
-    {
-        if(i!=j&&strcmp(argv[i],argv[j])==0)
+        File_List *temp=*head;
+        while(temp!=NULL)
         {
+            if(strcmp(temp->f_name,argv[i])==0)
+            {
             printf("Error: %s--> Duplicate file\n",argv[i]);
             error=1;
             break;
+            }
+            else
+            temp=temp->link;
         }
-    }
     }
     if(!error)
     insert_at_last(head,argv[i]);

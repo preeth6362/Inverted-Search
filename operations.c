@@ -106,7 +106,10 @@ void display(mainode_t **arr)
             subnode_t *stemp=mtemp->s_link;
             while(stemp!=NULL)
             {
+                if(stemp==mtemp->s_link)
                 printf("%s\t",stemp->filename);
+                else
+                printf("\t\t\t\t\t%s\t",stemp->filename);
                 printf("%d\n",stemp->word_count);
                 stemp=stemp->link;
             }

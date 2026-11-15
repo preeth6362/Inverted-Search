@@ -32,6 +32,30 @@ int main(int argc,char *argv[])
             display(arr);
             break;
         }
+        case 3:
+        {
+            char inp[30];
+            printf("Enter the word you want to search: ");
+            scanf("%s",inp);
+            if(search(arr,inp)==FAILURE)
+            printf("Word not found\n");
+            break;
+        }
+        case 5:
+        {
+            char file[30];
+            printf("Enter the filename: ");
+            scanf("%s",file);
+            int len=strlen(file);
+            if(file[len-1]!='t' || file[len-2]!='x' || file[len-3]!='t' || file[len-4]!='.')
+            {    
+             printf("Error: %s-->Invalid file format\n",file);
+             break;
+            }
+            if(save(arr,file)==SUCCESS)
+            printf("Database saved successfully\n");
+        break;
+        }
         case 6:
         break;
     }
