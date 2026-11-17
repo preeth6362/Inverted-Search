@@ -1,5 +1,8 @@
 #include "inv.h"
 
+char create_flag;
+char update_flag;
+
 int main(int argc,char *argv[])
 {
     File_List *head=NULL;
@@ -15,16 +18,26 @@ int main(int argc,char *argv[])
 
     int choice;
     do{
-    printf("Select the operation\n1. Create Database\n2.Display Database\n3. Search Database\n4. Update Database\n5. Save DataBase\n6.Exit\n");
+    printf("Select the operation\n1. Create Database\n2. Display Database\n3. Search Database\n4. Update Database\n5. Save DataBase\n6.Exit\n");
     scanf("%d",&choice);
     switch(choice)
     {
         case 1:
         {
+            if(create_flag)
+            {
+                printf("Database created already Try other opeartions\n\n");
+                break;
+            }
+            if(!update_flag)
+            {
+                printf("First Update the previous database and then create\n\n");
+                break;
+            }
             if(create(arr,&head)==SUCCESS)
-            printf("Database created succeessfully\n");
+            printf("Database created succeessfully\n\n");
             else
-            printf("Error creating Database\n");
+            printf("Error creating Database\n\n");
         break;
         }
         case 2:
@@ -38,11 +51,16 @@ int main(int argc,char *argv[])
             printf("Enter the word you want to search: ");
             scanf("%s",inp);
             if(search(arr,inp)==FAILURE)
-            printf("Word not found\n");
+            printf("Word not found\n\n");
             break;
         }
         case 4:
         {
+            if(update_flag)
+            {
+                printf("Database updated already try other operations\n\n");
+                break;
+            }
             char file[30];
             printf("Enter the saved filename to update: ");
             scanf("%s",file);
@@ -50,7 +68,8 @@ int main(int argc,char *argv[])
             {
                 break;
             }
-            update(arr,file);
+            update(arr,file,&head);
+            printf("Database updated successfully\n\n");
             break;
         }
         case 5:
@@ -65,7 +84,7 @@ int main(int argc,char *argv[])
              break;
             }
             if(save(arr,file)==SUCCESS)
-            printf("Database saved successfully\n");
+            printf("Database saved successfully\n\n");
         break;
         }
         case 6:

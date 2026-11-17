@@ -1,4 +1,13 @@
-#1;bye;1;file2.txt;1;#
+#0;adventure;1;f3.txt;1;#
+#0;All;1;f3.txt;1;#
+#1;bye;2;file2.txt;1;f3.txt;1;#
+#1;Bat;1;f3.txt;1;#
+#5;for;1;f3.txt;1;#
 #7;hiii;2;file1.txt;2;file2.txt;1;#
 #7;helllo;1;file2.txt;1;#
+#7;hi;1;f3.txt;1;#
+#7;hello;1;f3.txt;1;#
+#7;Hen;1;f3.txt;1;#
+#15;preethu;1;f3.txt;1;#
+#17;ready;1;f3.txt;1;#
 #26;123;1;file1.txt;1;#

@@ -1,5 +1,7 @@
 #include "inv.h"
 
+extern char update_flag;
+
 int search(mainode_t **arr,char *str)
 {
     int index;
@@ -32,7 +34,10 @@ int search(mainode_t **arr,char *str)
     if(mtemp==NULL)
     return FAILURE;
 else
+{
+printf("\n");
 return SUCCESS;
+}
 }
 
 int save(mainode_t **arr,char *file)
@@ -58,7 +63,7 @@ int save(mainode_t **arr,char *file)
     return SUCCESS;
 }
 
-int update(mainode_t **arr,char *file)
+int update(mainode_t **arr,char *file,File_List **head)
 {
     FILE *fptr=fopen(file,"r");
     int index,filecount,wordcount;
@@ -86,6 +91,7 @@ int update(mainode_t **arr,char *file)
         while(filecount)
         {
             fscanf(fptr,"%[^;];%d;",filename,&wordcount);
+            delete_duplicate_node(head,filename);
             subnode_t *snode=malloc(sizeof(subnode_t));
             if(snode==NULL)return FAILURE;
             strcpy(snode->filename,filename);
@@ -106,5 +112,6 @@ int update(mainode_t **arr,char *file)
         fscanf(fptr,"#\n");
     }
     fclose(fptr);
+    update_flag=1;
     return SUCCESS;
 }

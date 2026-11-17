@@ -1,5 +1,7 @@
 #include "inv.h"
 
+extern char create_flag;
+
 int create(mainode_t **arr,File_List **head)
 {
     File_List *temp=*head;
@@ -87,31 +89,32 @@ int create(mainode_t **arr,File_List **head)
         fclose(fptr);
         temp=temp->link;
     }
+    create_flag=1;
     return SUCCESS;
 }
 
 void display(mainode_t **arr)
 {
-    printf("Index\tWord\t\tFilecount\tFilename\tWordCound\n");
+    printf("%-8s%-20s%-12s%-20s%-10s\n","Index","Word","Filecount","Filename","WordCount");
     for(int i=0;i<27;i++)
     {
-        printf("%d\t",i);
+        printf("%-8d",i);
         mainode_t *mtemp=arr[i];
         while(mtemp!=NULL)
         {
             if(mtemp==arr[i])
-            printf("%s\t\t",mtemp->word);
+            printf("%-20s",mtemp->word);
            else
-           printf("\t%s\t\t",mtemp->word);
-            printf("%d\t\t",mtemp->file_count);
+           printf("%-8s%-20s"," ",mtemp->word);
+            printf("%-12d",mtemp->file_count);
             subnode_t *stemp=mtemp->s_link;
             while(stemp!=NULL)
             {
                 if(stemp==mtemp->s_link)
-                printf("%s\t",stemp->filename);
+                printf("%-20s",stemp->filename);
                 else
-                printf("\t\t\t\t\t%s\t",stemp->filename);
-                printf("%d\n",stemp->word_count);
+                printf("%-8s%-20s%-12s%-20s"," "," "," ",stemp->filename);
+                printf("%-10d\n",stemp->word_count);
                 stemp=stemp->link;
             }
             mtemp=mtemp->link;

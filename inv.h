@@ -37,5 +37,9 @@ void display(mainode_t **arr);
 int search(mainode_t **arr,char *str);
 int save(mainode_t **arr,char *file);
 int validate(char *file);
-int update(mainode_t **arr,char *file);
+int update(mainode_t **arr,char *file,File_List **head);
+int delete_duplicate_node(File_List **head,char *filename);
+
+
+
 #endif

@@ -108,3 +108,23 @@ int validate(char *file)
     fclose(fptr);
     return SUCCESS;
 }
+
+int delete_duplicate_node(File_List **head,char *filename)
+{
+    File_List *temp=*head,*prev=NULL;
+    while(temp!=NULL)
+    {
+        if(strcmp(temp->f_name,filename)==0)
+        {
+            if(prev==NULL)
+                *head=(*head)->link;
+            else
+                prev->link=temp->link;
+            free(temp);
+            return SUCCESS;
+        }
+    prev=temp;
+    temp=temp->link;
+    }
+}
+
