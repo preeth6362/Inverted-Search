@@ -84,6 +84,7 @@ int create(mainode_t **arr,File_List **head)
                 }
             }
         }
+        fclose(fptr);
         temp=temp->link;
     }
     return SUCCESS;

@@ -57,3 +57,54 @@ int save(mainode_t **arr,char *file)
     }
     return SUCCESS;
 }
+
+int update(mainode_t **arr,char *file)
+{
+    FILE *fptr=fopen(file,"r");
+    int index,filecount,wordcount;
+    char word[30],filename[30];
+    mainode_t *mlast;
+    subnode_t *slast;
+    while(fscanf(fptr,"#%d;%[^;];%d;",&index,word,&filecount)!=EOF)
+    {
+        mainode_t *nnode=malloc(sizeof(mainode_t));
+        if(nnode==NULL)return FAILURE;
+        strcpy(nnode->word,word);
+        nnode->file_count=filecount;
+        nnode->s_link=NULL;
+        nnode->link=NULL;
+        if(arr[index]==NULL)
+        {
+        arr[index]=nnode;
+        mlast=nnode;
+        }
+        else
+        {
+            mlast->link=nnode;
+            mlast=mlast->link;
+        }
+        while(filecount)
+        {
+            fscanf(fptr,"%[^;];%d;",filename,&wordcount);
+            subnode_t *snode=malloc(sizeof(subnode_t));
+            if(snode==NULL)return FAILURE;
+            strcpy(snode->filename,filename);
+            snode->word_count=wordcount;
+            snode->link=NULL;
+            if(nnode->s_link==NULL)
+            {
+            nnode->s_link=snode;
+            slast=snode;
+            }
+            else
+            {
+                slast->link=snode;
+                slast=slast->link;
+            }
+            filecount--;
+        }
+        fscanf(fptr,"#\n");
+    }
+    fclose(fptr);
+    return SUCCESS;
+}

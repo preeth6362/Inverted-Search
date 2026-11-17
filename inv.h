@@ -36,4 +36,6 @@ int create(mainode_t **arr,File_List **head);
 void display(mainode_t **arr);
 int search(mainode_t **arr,char *str);
 int save(mainode_t **arr,char *file);
+int validate(char *file);
+int update(mainode_t **arr,char *file);
 #endif

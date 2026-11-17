@@ -41,6 +41,18 @@ int main(int argc,char *argv[])
             printf("Word not found\n");
             break;
         }
+        case 4:
+        {
+            char file[30];
+            printf("Enter the saved filename to update: ");
+            scanf("%s",file);
+            if(validate(file)==FAILURE)
+            {
+                break;
+            }
+            update(arr,file);
+            break;
+        }
         case 5:
         {
             char file[30];
