@@ -29,10 +29,16 @@ int main(int argc,char *argv[])
                 printf("Database created already Try other opeartions\n\n");
                 break;
             }
+            char opt;
             if(!update_flag)
+            {
+            printf("Do you have a backup file where previous data is saved \nIf yes enter y Or if you are creating the database for first time enter n? : y/n ");
+            scanf(" %c",&opt);
+            if(opt=='y')
             {
                 printf("First Update the previous database and then create\n\n");
                 break;
+            }
             }
             if(create(arr,&head)==SUCCESS)
             printf("Database created succeessfully\n\n");
